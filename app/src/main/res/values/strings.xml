@@ -1,3 +1,42 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">ExplorARv9000</string>
+    <string name="go_event">Go Event</string>
+    <string name="signup">Sign Up</string>
+    <string name="login">Log In</string>
+    <string name="event_name">SQL Workshop 10009</string>
+    <string name="event_organiser">WIT</string>
+    <string name="event_address">Quad Room 2025</string>
+    <string name="event_date">2nd August 2017</string>
+    <string name="event_time">12:00pm-2:00pm</string>
+    <string name="event_price">Free</string>
+    <string name="event_type">Workshop</string>
+    <string name="event_description">This is a great beginners workshop for anyone that wants to learn SQL and create databases.</string>
+    <string name="text_accounts">All Accounts</string>
+    <string name="hint_name">Full name</string>
+    <string name="hint_zID">zID</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="text_login">Login</string>
+    <string name="text_register">Register</string>
+    <string name="error_message_name">Enter Full Name</string>
+    <string name="error_message_email">Enter Valid Email</string>
+    <string name="error_message_password">Enter Password</string>
+    <string name="success_message">Registration Successful</string>
+    <string name="text_not_member">No account yet? Create one</string>
+    <string name="text_already_member">Already a member? Login</string>
+    <string name="error_email_exists">Email Already Exists</string>
+    <string name="error_password_match">Password Does Not Matches</string>
+    <string name="error_valid_email_password">Wrong Email or Password</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="your_events">Your Events</string>
+    <string name="hint_event_title">Enter Your Event Title</string>
+    <string name="hint_event_date">Enter Event Date</string>
+    <string name="hint_event_location">Enter Location of Event</string>
+    <string name="hint_event_price">Enter Price</string>
+    <string name="hint_event_time">Enter Event Time</string>
+    <string name="hint_event_desc">Enter Event Description</string>
+
+
 </resources>

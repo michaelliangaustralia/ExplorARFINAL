@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:weightSum="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/event_detail_hero_image"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/eventheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/event_detail_event_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/event_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/event_detail_organiser_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/event_organiser"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <View
+            android:id="@+id/shadow"
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/shadow">
+    </View>
+
+    <GridLayout
+            android:id="@+id/eventDetails"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:rowCount="4"
+            tools:context=".GridXMLActivity"
+            android:layout_weight="1.04">
+
+        <TextView
+                android:id="@+id/event_detail_event_address_title"
+                android:layout_width="80dp"
+                android:layout_gravity="left|top"
+                android:text="Address:"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/event_detail_event_address"
+                android:layout_gravity="left|top"
+                android:layout_width="200dp"
+                android:text="@string/event_address"
+                android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/event_detail_event_date_title"
+            android:layout_gravity="left|top"
+            android:layout_width="80dp"
+            android:text="Date"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/event_detail_event_date"
+            android:layout_gravity="left|top"
+            android:layout_width="200dp"
+            android:text="@string/event_date"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+                android:id="@+id/event_detail_event_time_title"
+                android:layout_gravity="left|top"
+                android:layout_width="80dp"
+                android:text="Time"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/event_detail_event_time"
+                android:layout_gravity="left|top"
+                android:layout_width="200dp"
+                android:text="@string/event_time"
+                android:textColor="@android:color/black"/>
+
+        <TextView
+                android:id="@+id/event_detail_event_price_title"
+                android:layout_gravity="left|top"
+                android:layout_width="80dp"
+                android:text="Price"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/event_detail_event_price"
+                android:layout_gravity="left|top"
+                android:layout_width="200dp"
+                android:text="@string/event_price"
+                android:textColor="@android:color/black"/>
+
+        <TextView
+                android:id="@+id/event_detail_description_title"
+                android:layout_gravity="left|top"
+                android:layout_width="80dp"
+                android:text="Description"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/event_detail_description"
+                android:layout_gravity="left|top"
+                android:layout_width="280dp"
+                android:text="@string/event_description"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content"/>
+
+    </GridLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:orientation="horizontal"
+            android:gravity="bottom">
+
+
+        <Button
+                android:id="@+id/event_detail_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:text="@string/go_event"
+                android:textColor="@android:color/white"
+        />
+    </LinearLayout>
+
+</LinearLayout>
