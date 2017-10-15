@@ -27,25 +27,23 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MapsActivity">
+        <activity android:name=".MapsActivity"></activity>
 
-        </activity>
+        <activity android:name=".OrganizationLogin"></activity>
 
-        <activity
-            android:name=".OrganizationLogin">
+        <activity android:name=".OrganizerHome"></activity>
 
-        </activity>
+        <activity android:name=".EventDetailsActivity"></activity>
 
-        <activity
-            android:name=".OrganizerHome">
+        <activity android:name=".OrganizationSignup"></activity>
 
-        </activity>
+        <activity android:name=".crudEvent"></activity>
 
-        <activity
-            android:name=".EventDetailsActivity">
+        <activity android:name=".EventsList"></activity>
 
-        </activity>
+        <activity android:name=".OrganizerSetEventLocation"></activity>
+
+        <activity android:name=".CreateEvent"></activity>
 
 
         <!--

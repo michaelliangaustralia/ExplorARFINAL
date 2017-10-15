@@ -103,17 +103,29 @@ public class DbCreation extends SQLiteOpenHelper {
 
     }
     //insert a new organisation row
-    public void insertOrganization(Organization o) {
+    public void insertOrganization(String oName, String oEmail, String oPassword) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DbContracts.organisationsDBentry.COLUMN_NAME_ORG, o.getoName());
-        values.put(DbContracts.organisationsDBentry.COLUMN_EMAIL_ORG, o.getoEmail());
-        values.put(DbContracts.organisationsDBentry.COLUMN_PASSWORD_ORG, o.getoPassword());
+        values.put(DbContracts.organisationsDBentry.COLUMN_NAME_ORG, oName);
+        values.put(DbContracts.organisationsDBentry.COLUMN_EMAIL_ORG, oEmail);
+        values.put(DbContracts.organisationsDBentry.COLUMN_PASSWORD_ORG, oPassword);
         db.insert(DbContracts.organisationsDBentry.TABLE_NAME, null, values);
         db.close();
     }
-
-
+    //insert a new event row
+    public void insertEvent(String eventName, String eventLocation, String eventDate, String eventTime, String eventPrice, String eventDescription, String eventLatitude, String eventLongitude) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DbContracts.eventsDBentry.COLUMN_NAME_EVENT, eventName);
+        values.put(DbContracts.eventsDBentry.COLUMN_LOCATION_EVENT, eventLocation);
+        values.put(DbContracts.eventsDBentry.COLUMN_DATE_EVENT, eventDate);
+        values.put(DbContracts.eventsDBentry.COLUMN_EVENT_TIME, eventTime);
+        values.put(DbContracts.eventsDBentry.COLUMN_PRICE_EVENT, eventPrice);
+        values.put(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION, eventDescription);
+        values.put(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT, eventLatitude);
+        values.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, eventLongitude);
+    }
+    //search username and password
     public boolean searchoPassword(String email, String pass)
     {
         SQLiteDatabase db = getReadableDatabase();
@@ -129,26 +141,6 @@ public class DbCreation extends SQLiteOpenHelper {
         }
         return false;
     }
-//    public String searchoPassword(String oName) {
-//        SQLiteDatabase db = getReadableDatabase();
-//        String query = "SELECT * FROM" +
-//        DbContracts.organisationsDBentry .TABLE_NAME +" WHERE "+
-//                DbContracts.organisationsDBentry .COLUMN_NAME_ORG +" =? AND "+
-//        DbContracts.organisationsDBentry .COLUMN_PASSWORD_ORG +"=?";
-//        Cursor cursor = db.rawQuery(query,null);
-//        String a,b;
-//        b = "Not Found";
-//        if(cursor.moveToFirst()) {
-//            do {
-//                a = cursor.getString(0);
-//                b = cursor.getString(1);
-//                break;
-//            }
-//            while(cursor.moveToNext());
-//        }
-//        return query;
-//    }
-
 
     // drops the current table and creates a new one when a new version is updated
     @Override
@@ -157,9 +149,6 @@ public class DbCreation extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 }
-
-
-
 
     /*
       IMAGE DB
