@@ -17,6 +17,8 @@ import model.Organization;
 public class OrganizationLogin extends MainActivity implements View.OnClickListener {
     DbCreation helper = new DbCreation(this);
 
+    public static String loggedUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class OrganizationLogin extends MainActivity implements View.OnClickListe
                         .show();
                 Intent i = new Intent(OrganizationLogin.this, OrganizerHome.class);
                 startActivity(i);
+                loggedUser = helper.getOrganisationNameFromEmail(email);
             } else {
                 Toast.makeText(OrganizationLogin.this,
                         "Invalid username or password",

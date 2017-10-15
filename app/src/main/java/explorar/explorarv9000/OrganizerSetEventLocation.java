@@ -15,6 +15,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import static explorar.explorarv9000.OrganizationLogin.loggedUser;
 
 public class OrganizerSetEventLocation extends FragmentActivity implements OnMapReadyCallback {
 
@@ -82,7 +83,7 @@ public class OrganizerSetEventLocation extends FragmentActivity implements OnMap
                                                                                   Toast.makeText(getApplicationContext(), "Choose Event Location", Toast.LENGTH_LONG).show();
                                                                                   return;
                                                                               } else {
-                                                                                  helper.insertEvent("eventitle", "eventlocation", "eventdate", "eventstarttime", "endendtime", "eventprice", "eventdescription", latitude, longitude);
+                                                                                  helper.insertEvent(loggedUser, "eventitle", "eventlocation", "eventdate", "eventstarttime", "endendtime", "eventprice", "eventdescription", latitude, longitude);
                                                                                   Toast.makeText(getApplicationContext(), "Event Successfully Created", Toast.LENGTH_LONG).show();
                                                                                   Intent openNextActivityIntent = new Intent(OrganizerSetEventLocation.this, OrganizerHome.class);
                                                                                   openNextActivityIntent.putExtra(Intent.EXTRA_TEXT, markerPositionLat);
