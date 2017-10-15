@@ -15,18 +15,18 @@ public class OrganizerHome extends OrganizationLogin {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.organiser_home);
-        Button organiserlistevents = (Button)findViewById(R.id.organiser_home_list_event_button);
+        Button organiserlistevents = (Button)findViewById(R.id.organiser_home_view_events);
         organiserlistevents.setOnClickListener(this);
-        Button organisercreateevent = (Button)findViewById(R.id.organiser_home_create_event_button);
+        Button organisercreateevent = (Button)findViewById(R.id.organiser_home_create_event);
         organisercreateevent.setOnClickListener(this);
     }
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.organiser_home_list_event_button:
+            case R.id.organiser_home_view_events:
                 Intent i = new Intent(OrganizerHome.this, EventsList.class);
                 startActivity(i);
                 break;
-            case R.id.organiser_home_create_event_button:
+            case R.id.organiser_home_create_event:
                 Intent l = new Intent(OrganizerHome.this, CreateEvent.class);
                 startActivity(l);
                 break;

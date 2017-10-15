@@ -24,6 +24,8 @@ public class OrganizationLogin extends MainActivity implements View.OnClickListe
 
         Button login = (Button) findViewById(R.id.organiser_login_button);
         login.setOnClickListener(this); // calling onClick() method
+        Button signup = (Button) findViewById(R.id.organiser_login_sign_up);
+        signup.setOnClickListener(this); // calling onClick() method
 
     }
 
@@ -49,5 +51,13 @@ public class OrganizationLogin extends MainActivity implements View.OnClickListe
             }
 
         }
+
+        if (v.getId() == (R.id.organiser_login_sign_up)) {
+                Intent i = new Intent(OrganizationLogin.this, OrganizationSignup.class);
+                startActivity(i);
+            }
+
+        }
+
+
     }
-}
