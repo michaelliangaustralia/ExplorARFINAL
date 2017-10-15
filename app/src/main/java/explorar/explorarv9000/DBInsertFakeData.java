@@ -37,23 +37,51 @@ public class DBInsertFakeData {
         cv.put(DbContracts.eventsDBentry.COLUMN_ENDTIME_EVENT, "2:00");
         cv.put(DbContracts.eventsDBentry.COLUMN_PRICE_EVENT, "FREE");
         cv.put(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION, "Best SQL Workshop at UNSW happening today!");
-        cv.put(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT, "-33.919728");
-        cv.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, "151.234095");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT, "-33.916710");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, "151.229658");
         cv.put(DbContracts.eventsDBentry.COLUMN_EVENT_TYPE , "WORKSHOP");
         list.add(cv);
         db.insert(DbContracts.eventsDBentry.TABLE_NAME, null, cv);
 
-        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_EVENT, "R Workshop 73");
-        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_HOSTORG, "WIT UNSW");
-        cv.put(DbContracts.eventsDBentry.COLUMN_LOCATION_EVENT, "UNSW Law Building G23");
+        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_EVENT, "Learn R with WIT!");
+        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_HOSTORG, "Women In Technology (WIT)");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LOCATION_EVENT, "UNSW Law Building 101");
         cv.put(DbContracts.eventsDBentry.COLUMN_DATE_EVENT, "4th August 2017");
         cv.put(DbContracts.eventsDBentry.COLUMN_STARTTIME_EVENT, "2:00");
         cv.put(DbContracts.eventsDBentry.COLUMN_ENDTIME_EVENT, "4:00");
         cv.put(DbContracts.eventsDBentry.COLUMN_PRICE_EVENT, "$5");
         cv.put(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION, "Free Pizza!");
-        cv.put(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT, "-33.915282");
-        cv.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, "151.229160");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT, "-33.916950");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, "151.227974");
         cv.put(DbContracts.eventsDBentry.COLUMN_EVENT_TYPE , "WORKSHOP");
+        list.add(cv);
+        db.insert(DbContracts.eventsDBentry.TABLE_NAME, null, cv);
+
+        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_EVENT, "UNIT Director Meet and Greet");
+        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_HOSTORG, "University Network of Investment and Trading (UNIT)");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LOCATION_EVENT, "UNSW Library Lawn");
+        cv.put(DbContracts.eventsDBentry.COLUMN_DATE_EVENT, "6th August 2017");
+        cv.put(DbContracts.eventsDBentry.COLUMN_STARTTIME_EVENT, "11:00");
+        cv.put(DbContracts.eventsDBentry.COLUMN_ENDTIME_EVENT, "12:00");
+        cv.put(DbContracts.eventsDBentry.COLUMN_PRICE_EVENT, "FREE");
+        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION, "Director applications are open now! Take this opportunity to learn more about UNIT and meet some of our current and incoming executives.");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT, "-33.916905");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, "151.233509");
+        cv.put(DbContracts.eventsDBentry.COLUMN_EVENT_TYPE , "SOCIAL");
+        list.add(cv);
+        db.insert(DbContracts.eventsDBentry.TABLE_NAME, null, cv);
+
+        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_EVENT, "UNSW BSOC Camp Sales");
+        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_HOSTORG, "UNSW Business Society (BSOC)");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LOCATION_EVENT, "UNSW Physics Lawn");
+        cv.put(DbContracts.eventsDBentry.COLUMN_DATE_EVENT, "8th August 2017");
+        cv.put(DbContracts.eventsDBentry.COLUMN_STARTTIME_EVENT, "8:00");
+        cv.put(DbContracts.eventsDBentry.COLUMN_ENDTIME_EVENT, "10:00");
+        cv.put(DbContracts.eventsDBentry.COLUMN_PRICE_EVENT, "FREE");
+        cv.put(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION, "Tickets for our highly anticipated annual camp are on sale now! Jump on by our stall to grab your ones today. Get them before they sell out!");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT, "-33.918017");
+        cv.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, "151.230789");
+        cv.put(DbContracts.eventsDBentry.COLUMN_EVENT_TYPE , "SOCIAL");
         list.add(cv);
         db.insert(DbContracts.eventsDBentry.TABLE_NAME, null, cv);
 

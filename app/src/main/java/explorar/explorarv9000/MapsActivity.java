@@ -39,7 +39,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.maps.android.ui.IconGenerator;
 
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
@@ -50,15 +50,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private double markerLong;
     private Marker marker;
     private LatLng markerLatLng;
-    private LatLng currentLatLong;
-    private FusedLocationProviderClient mFusedLocationClient;
     private Location mCurrentLocation;
-    //Request Location Update TODO
-    private boolean mRequestingLocationUpdates = true;
-    private LocationCallback mLocationCallback;
 
 
-    private static final int DEFAULT_ZOOM = 15;
+    private static final float DEFAULT_ZOOM = 16.3f;
     public static final String TAG = MapsActivity.class.getSimpleName();
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final int REQUEST_PERMISSION_ACCESS_FINE_LOCATION = 1000; //This is an abitrary int that is used in onRequestPermissionsResult for handling permission results
@@ -69,12 +64,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        /*
+
+         */
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.action_bar);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View view = getSupportActionBar().getCustomView();
         TextView textView = (TextView) findViewById(R.id.toolbar_title);
-        textView.setText("Maps");
+        textView.setText("Events Happening Now");
 
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.action_bar_back);
 
@@ -110,7 +108,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //initialiseDB
         initialiseDB();
 
-        //insertFakeData TODO: Remove this when we have real data
+        //insertFakeData
         insertFakeData();
 
         //initiliaseCursor
@@ -161,13 +159,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.i(TAG, "set mMap to GoogleMap view");
 
 
-
-
         //set default camera to UNSWlatlng and move the camera
 //        LatLng unswLatLng = new LatLng(-33.917378, 151.230205);
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(unswLatLng));
 //        mMap.moveCamera(CameraUpdateFactory.zoomTo(14.0f));
-        //TODO: Would be nice to twist the orientation as well so that you look up main walkway
 
         /*
         Set up onClickListeners
@@ -177,9 +172,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //setting up OnMarkerClickListener
         mMap.setOnMarkerClickListener(this);
 
-        //setting up OnInfoWindowClickListener
-        mMap.setOnInfoWindowClickListener(this);
-
         //EnablemyLocation
         enableMyLocation();
 
@@ -187,14 +179,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Markers
          */
 
+        //Markers: Initiate custom iconfactory
         IconGenerator iconFactory = new IconGenerator(this);
 
-        // Markers: Create Markers from DB
         //Markers: Set cursor to position 0
         cursor.moveToPosition(0);
         //Markers: Create markers by iterating through database rows
         while (cursor.isAfterLast() == false) {
-            //TODO: Markers that always show name (you need to create bitmap icons for this) and then when you click into it it pops up with the event details screen
             //cursor get required data
             markerLat = cursor.getDouble(cursor.getColumnIndex(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT));
             markerLong = cursor.getDouble(cursor.getColumnIndex(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT));
@@ -205,7 +196,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             marker = mMap.addMarker(new MarkerOptions()
                     .position(markerLatLng)
                     .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(eventName)))
-                    .anchor(iconFactory.getAnchorU(), iconFactory.getAnchorV())); //TODO: Waiting on jenny to create the custom icon
+                    .anchor(iconFactory.getAnchorU(), iconFactory.getAnchorV()));
             //Store the position of the cursor in the marker as a data object - we will need this later on for pulling more information about it in EventDetailsActivity
             marker.setTag(cursor.getPosition());
             //showInfoWindow
@@ -251,15 +242,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return false;
     }
 
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-        //TODO: Make this the same as onMarkerClick
-        Toast.makeText(this, "IW clicked - SQL Workshop 101 is opened", Toast.LENGTH_LONG).show();
-    }
-
     @Override  //Defines what happens when you click the location button
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_LONG).show();
         return false;
 
     }
