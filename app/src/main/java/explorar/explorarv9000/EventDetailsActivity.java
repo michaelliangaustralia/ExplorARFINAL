@@ -183,7 +183,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         //IMAGE: initialise ImageView
         final ImageView imageview_event_details_hero = (ImageView) findViewById(R.id.event_detail_hero_image);
-
+        imageview_event_details_hero.setImageResource(R.drawable.unsw_business_school);
         //IMAGE: set Content of imageview_event_details_hero based off what the location was
         if (location.contains("Business School")){
             imageview_event_details_hero.setImageResource(R.drawable.unsw_business_school);

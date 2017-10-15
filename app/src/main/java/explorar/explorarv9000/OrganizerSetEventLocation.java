@@ -51,9 +51,9 @@ public class OrganizerSetEventLocation extends FragmentActivity implements OnMap
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng unswLatLng = new LatLng(-33.917378, 151.230205);
+        LatLng unswLatLng = new LatLng(-33.917423, 151.229229);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(unswLatLng));
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(14.0f));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(12.0f));
 
         // Add a marker in Sydney and move the camera
         marker = mMap.addMarker(new MarkerOptions()
