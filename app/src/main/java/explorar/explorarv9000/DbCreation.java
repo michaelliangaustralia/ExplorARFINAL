@@ -63,14 +63,14 @@ public class DbCreation extends SQLiteOpenHelper {
                 DbContracts.eventsDBentry ._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 DbContracts.eventsDBentry .COLUMN_NAME_EVENT + " TEXT NOT NULL, " +
                 DbContracts.eventsDBentry .COLUMN_NAME_HOSTORG + " TEXT NOT NULL, " +
-                DbContracts.eventsDBentry .COLUMN_LOCATION_EVENT + " TEXT NOT NULL," +
-                DbContracts.eventsDBentry .COLUMN_DATE_EVENT + " TEXT NOT NULL," +
-                DbContracts.eventsDBentry .COLUMN_STARTTIME_EVENT + " TEXT NOT NULL," +
-                DbContracts.eventsDBentry .COLUMN_ENDTIME_EVENT + " TEXT NOT NULL," +
-                DbContracts.eventsDBentry .COLUMN_PRICE_EVENT + " DOUBLE NOT NULL," +
+                DbContracts.eventsDBentry .COLUMN_LOCATION_EVENT + " TEXT NOT NULL, " +
+                DbContracts.eventsDBentry .COLUMN_DATE_EVENT + " TEXT NOT NULL, " +
+                DbContracts.eventsDBentry .COLUMN_STARTTIME_EVENT + " TEXT NOT NULL, " +
+                DbContracts.eventsDBentry .COLUMN_ENDTIME_EVENT + " TEXT NOT NULL, " +
+                DbContracts.eventsDBentry .COLUMN_PRICE_EVENT + " DOUBLE NOT NULL, " +
                 DbContracts.eventsDBentry .COLUMN_NAME_DESCRIPTION + " TEXT NOT NULL, " +
-                DbContracts.eventsDBentry .COLUMN_LATITUDE_EVENT + " DOUBLE NOT NULL," +
-                DbContracts.eventsDBentry .COLUMN_LONGITUDE_EVENT + " DOUBLE NOT NULL," +
+                DbContracts.eventsDBentry .COLUMN_LATITUDE_EVENT + " DOUBLE NOT NULL, " +
+                DbContracts.eventsDBentry .COLUMN_LONGITUDE_EVENT + " DOUBLE NOT NULL, " +
                 DbContracts.eventsDBentry .COLUMN_EVENT_TYPE + " TEXT NOT NULL" +
                 ");";
 
@@ -113,17 +113,19 @@ public class DbCreation extends SQLiteOpenHelper {
         db.close();
     }
     //insert a new event row
-    public void insertEvent(String eventName, String eventLocation, String eventDate, String eventTime, String eventPrice, String eventDescription, String eventLatitude, String eventLongitude) {
+    public void insertEvent(String eventName, String eventLocation, String eventDate, String eventStartTime, String eventEndTime, String eventPrice, String eventDescription, String eventLatitude, String eventLongitude) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContracts.eventsDBentry.COLUMN_NAME_EVENT, eventName);
         values.put(DbContracts.eventsDBentry.COLUMN_LOCATION_EVENT, eventLocation);
         values.put(DbContracts.eventsDBentry.COLUMN_DATE_EVENT, eventDate);
-        values.put(DbContracts.eventsDBentry.COLUMN_EVENT_TIME, eventTime);
+        values.put(DbContracts.eventsDBentry.COLUMN_STARTTIME_EVENT, eventStartTime);
+        values.put(DbContracts.eventsDBentry.COLUMN_ENDTIME_EVENT, eventEndTime);
         values.put(DbContracts.eventsDBentry.COLUMN_PRICE_EVENT, eventPrice);
         values.put(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION, eventDescription);
         values.put(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT, eventLatitude);
         values.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, eventLongitude);
+        db.close();
     }
     //search username and password
     public boolean searchoPassword(String email, String pass)
