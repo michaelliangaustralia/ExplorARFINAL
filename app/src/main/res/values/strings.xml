@@ -32,7 +32,7 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="your_events">Your Events</string>
     <string name="hint_event_title">Enter Your Event Title</string>
-    <string name="hint_event_date">Enter Event Date</string>
+    <string name="hint_event_date">Enter Event Date (DD/MM/YYYY)</string>
     <string name="hint_event_location">Enter Location of Event</string>
     <string name="hint_event_price">Enter Price</string>
     <string name="hint_event_time">Enter Event Time</string>
