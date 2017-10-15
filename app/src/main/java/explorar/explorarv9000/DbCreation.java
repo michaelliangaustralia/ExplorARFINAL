@@ -100,6 +100,7 @@ public class DbCreation extends SQLiteOpenHelper {
 
         //Retrieve result from cursor
         String result;
+
         if (cursor.getCount() == 1){
             //return email
             cursor.moveToFirst();
@@ -117,20 +118,6 @@ public class DbCreation extends SQLiteOpenHelper {
         return result;
     }
 
-    // insert a new student row
-    public void insertStudent(Student s) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DbContracts.studentDBentry.COLUMN_zID, s.getzID());
-        values.put(DbContracts.studentDBentry.COLUMN_NAME_STUDENT, s.getName());
-        values.put(DbContracts.studentDBentry.COLUMN_PASSWORD_STUDENT, s.getPassword());
-        values.put(DbContracts.studentDBentry.COLUMN_EMAIL_STUDENT, s.getEmail());
-        db.insert(DbContracts.studentDBentry.TABLE_NAME, null, values);
-        db.close();
-        // db.update(DbContracts.studentDBentry.TABLE_NAME, values, COLUMN_USER_ID + " = ?",
-        //      new String[]{String.valueOf(s.getzID())});
-
-    }
 
     //insert a new organisation row
     public void insertOrganization(String oName, String oEmail, String oPassword) {
@@ -144,9 +131,10 @@ public class DbCreation extends SQLiteOpenHelper {
     }
 
     //insert a new event row
-    public void insertEvent(String eventName, String eventLocation, String eventDate, String eventStartTime, String eventEndTime, String eventPrice, String eventDescription, String eventLatitude, String eventLongitude) {
+    public void insertEvent(String orgName, String eventName, String eventLocation, String eventDate, String eventStartTime, String eventEndTime, String eventPrice, String eventDescription, String eventLatitude, String eventLongitude) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(DbContracts.eventsDBentry.COLUMN_NAME_HOSTORG, orgName);
         values.put(DbContracts.eventsDBentry.COLUMN_NAME_EVENT, eventName);
         values.put(DbContracts.eventsDBentry.COLUMN_LOCATION_EVENT, eventLocation);
         values.put(DbContracts.eventsDBentry.COLUMN_DATE_EVENT, eventDate);

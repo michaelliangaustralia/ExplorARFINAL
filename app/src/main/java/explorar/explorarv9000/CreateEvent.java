@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import static explorar.explorarv9000.OrganizationLogin.loggedUser;
 
 /**
  * Created by carregliu on 7/10/2017.
@@ -39,7 +40,7 @@ public class CreateEvent extends MainActivity implements View.OnClickListener {
         String eventdescstr = eventdesc.getText().toString();
 
         if(v.getId() == (R.id.create_event_button)) {
-            helper.insertEvent(eventitlestr, eventdatestr, eventstarttimestr, eventendtimestr, eventlocationstr, eventpricestr, eventdescstr, "latitude", "longitude");
+            helper.insertEvent(loggedUser, eventitlestr, eventdatestr, eventstarttimestr, eventendtimestr, eventlocationstr, eventpricestr, eventdescstr, "latitude", "longitude");
             Toast.makeText(getApplicationContext(), "Choose Event Location", Toast.LENGTH_LONG).show();
             Intent i = new Intent(CreateEvent.this, OrganizerSetEventLocation.class);
             startActivity(i);

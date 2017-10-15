@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.Event;
+import static explorar.explorarv9000.OrganizationLogin.loggedUser;
 
 /**
  * Created by carregliu on 15/10/2017.
@@ -67,7 +68,7 @@ public class EventRepo {
                 DbContracts.eventsDBentry .COLUMN_ENDTIME_EVENT + " ," +
                 DbContracts.eventsDBentry .COLUMN_PRICE_EVENT + " ," +
                 DbContracts.eventsDBentry .COLUMN_NAME_DESCRIPTION +
-                " FROM " + DbContracts.eventsDBentry.TABLE_NAME;
+                " FROM " + DbContracts.eventsDBentry.TABLE_NAME + "WHERE " +DbContracts.eventsDBentry.COLUMN_NAME_HOSTORG + "=" +loggedUser;
 
         ArrayList<HashMap<String, String>> eventList = new ArrayList<HashMap<String, String>>();
         Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
