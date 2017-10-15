@@ -34,6 +34,7 @@ public class EventRepo {
         sqLiteDatabase.close();
         return (int) eID;
     }
+
     public void delete(int eID) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         sqLiteDatabase.delete(DbContracts.eventsDBentry.TABLE_NAME, DbContracts.eventsDBentry._ID + "= ?", new String[] { String.valueOf(eID) });
