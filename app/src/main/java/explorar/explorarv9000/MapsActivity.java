@@ -65,7 +65,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps);
 
         /*
-
+        Action bar
          */
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.action_bar);
@@ -352,7 +352,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //DB: Insert Fake Data
         DBInsertFakeData.insertFakeData(mDb);
         Log.i("Michael", "Fake Data has been inserted");
-    } //TODO: Remove this when we connect database from organisation side
+    }
 
     private void initialiseCursor(){
         //DB: call getEventName() and put it in a cursor variable
