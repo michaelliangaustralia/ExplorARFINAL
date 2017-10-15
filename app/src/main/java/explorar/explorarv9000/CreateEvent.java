@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 public class CreateEvent extends MainActivity implements View.OnClickListener {
     DbCreation helper = new DbCreation(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,7 @@ public class CreateEvent extends MainActivity implements View.OnClickListener {
         Button createevent = (Button)findViewById(R.id.create_event_button);
         createevent.setOnClickListener(this);
     }
+
     public void onClick(View v) {
         EditText eventitle = (EditText)findViewById(R.id.event_title);
         EditText eventdate = (EditText)findViewById(R.id.event_date);
@@ -35,6 +37,7 @@ public class CreateEvent extends MainActivity implements View.OnClickListener {
         String eventlocationstr = eventlocation.getText().toString();
         String eventpricestr = eventprice.getText().toString();
         String eventdescstr = eventdesc.getText().toString();
+
         if(v.getId() == (R.id.create_event_button)) {
             helper.insertEvent(eventitlestr, eventdatestr, eventstarttimestr, eventendtimestr, eventlocationstr, eventpricestr, eventdescstr, "latitude", "longitude");
             Toast.makeText(getApplicationContext(), "Choose Event Location", Toast.LENGTH_LONG).show();

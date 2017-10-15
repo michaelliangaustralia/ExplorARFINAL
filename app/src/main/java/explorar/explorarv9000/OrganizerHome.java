@@ -11,6 +11,8 @@ import android.widget.TextView;
  */
 
 public class OrganizerHome extends OrganizationLogin {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

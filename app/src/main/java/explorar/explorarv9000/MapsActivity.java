@@ -269,8 +269,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
                 Toast.makeText(this, "getLastKnownLocation was null", Toast.LENGTH_LONG);
             }
-
-
         }
     }
 
@@ -336,7 +334,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onLocationChanged(Location location) {
-        handleNewLocation(location);
+//        handleNewLocation(location);
     }
 
     private void initialiseDB(){

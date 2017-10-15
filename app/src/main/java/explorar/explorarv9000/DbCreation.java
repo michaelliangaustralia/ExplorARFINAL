@@ -85,7 +85,36 @@ public class DbCreation extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_ORGANISATIONS_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_EVENTS_TABLE);
 //        sqLiteDatabase.execSQL(SQL_CREATE_IMAGES_TABLE);
+    }
 
+    //Get organisation name based off input email
+    public String getOrganisationNameFromEmail(String email){
+        //Create and initialise DB + cursor
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " +
+            DbContracts.organisationsDBentry.TABLE_NAME + " WHERE " +
+                DbContracts.organisationsDBentry.COLUMN_EMAIL_ORG + " = \"" +
+                email +
+                "\";"
+                ,null);
+
+        //Retrieve result from cursor
+        String result;
+        if (cursor.getCount() == 1){
+            //return email
+            cursor.moveToFirst();
+            result = cursor.getString(cursor.getColumnIndex(DbContracts.organisationsDBentry.COLUMN_EMAIL_ORG));
+        }
+        else if (cursor.getCount() > 1){
+            //duplicates exist
+            result = "Duplicate organisation entries exist for this email";
+        }
+        else {
+            //none exist
+            result = "No organisations exist for this email";
+        }
+
+        return result;
     }
 
     // insert a new student row
@@ -102,6 +131,7 @@ public class DbCreation extends SQLiteOpenHelper {
         //      new String[]{String.valueOf(s.getzID())});
 
     }
+
     //insert a new organisation row
     public void insertOrganization(String oName, String oEmail, String oPassword) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -112,6 +142,7 @@ public class DbCreation extends SQLiteOpenHelper {
         db.insert(DbContracts.organisationsDBentry.TABLE_NAME, null, values);
         db.close();
     }
+
     //insert a new event row
     public void insertEvent(String eventName, String eventLocation, String eventDate, String eventStartTime, String eventEndTime, String eventPrice, String eventDescription, String eventLatitude, String eventLongitude) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -127,6 +158,7 @@ public class DbCreation extends SQLiteOpenHelper {
         values.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, eventLongitude);
         db.close();
     }
+
     //search username and password
     public boolean searchoPassword(String email, String pass)
     {
