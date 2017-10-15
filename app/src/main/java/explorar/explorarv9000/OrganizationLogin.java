@@ -40,7 +40,7 @@ public class OrganizationLogin extends MainActivity implements View.OnClickListe
                 Toast.makeText(OrganizationLogin.this,
                         "Successfully Logged In", Toast.LENGTH_LONG)
                         .show();
-                Intent i = new Intent(OrganizationLogin.this, MainActivity.class);
+                Intent i = new Intent(OrganizationLogin.this, OrganizerHome.class);
                 startActivity(i);
             } else {
                 Toast.makeText(OrganizationLogin.this,
