@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/imageView4"
             android:layout_below="@+id/imageView6"
-            android:text="Button" />
+            android:text="List Events" />
 
         <Button
             android:id="@+id/organiser_home_create_event_button"
@@ -49,6 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/imageView6"
             android:layout_below="@+id/imageView6"
-            android:text="Button" />
+            android:text="Create Event" />
     </RelativeLayout>
 </LinearLayout>

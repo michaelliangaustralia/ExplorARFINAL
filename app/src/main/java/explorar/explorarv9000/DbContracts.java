@@ -31,9 +31,11 @@ public final class DbContracts {
     // events database contract
     public static class eventsDBentry implements BaseColumns {
         public static final String TABLE_NAME = "eventsDB";
+        public static final String COLUMN_EVENT_ID = "eventID";
         public static final String COLUMN_NAME_EVENT = "eventName";
         public static final String COLUMN_NAME_HOSTORG = "hostOrganisation";
         public static final String COLUMN_LOCATION_EVENT = "eventLocation";
+        public static final String COLUMN_EVENT_TIME = "eventTime";
         public static final String COLUMN_DATE_EVENT = "eventDate";
         public static final String COLUMN_STARTTIME_EVENT = "eventStartTime";
         public static final String COLUMN_ENDTIME_EVENT = "eventEndTime";

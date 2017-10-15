@@ -47,7 +47,11 @@
         android:layout_centerVertical="true"
 
         android:src="@drawable/ic_keyboard_arrow_right_black_24px" />
-
+    <TextView
+        android:id="@+id/eID"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
     <TextView
         android:id="@+id/list_row_event_title"
         android:layout_width="wrap_content"

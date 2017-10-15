@@ -5,15 +5,15 @@ package model;
  */
 
 public class Event {
-    private int eID;
-    private String eName;
-    private String eLocation;
-    private String eDate;
-    private String eStartTime;
-    private String eEndTime;
-    private String ePrice;
-    private String eDesc;
-    private String eType;
+    public int eID;
+    public String eName;
+    public String eLocation;
+    public String eDate;
+    public String eStartTime;
+    public String eEndTime;
+    public String ePrice;
+    public String eDesc;
+    public String eType;
 
     public int geteID() {
         return eID;

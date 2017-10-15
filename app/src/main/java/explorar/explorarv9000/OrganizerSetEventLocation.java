@@ -65,6 +65,7 @@ public class OrganizerSetEventLocation extends FragmentActivity implements OnMap
          */
 
         final Button organizer_create_event_location_button = (Button) findViewById(R.id.organiser_set_event_location_set_location_button);
+        final DbCreation helper = new DbCreation(this);
 
         organizer_create_event_location_button.setOnClickListener(new View.OnClickListener() {
                                                                       @Override
@@ -74,21 +75,19 @@ public class OrganizerSetEventLocation extends FragmentActivity implements OnMap
                                                                           markerPositionLat = markerPosition.latitude;
                                                                           markerPositionLong = markerPosition.longitude;
                                                                           Log.i("Michael", "markerPosition is " + markerPosition);
+                                                                          String latitude = Double.toString(markerPositionLat);
+                                                                          String longitude = Double.toString(markerPositionLong);
+                                                                          if(view.getId() == (R.id.organiser_set_event_location_set_location_button)) {
+                                                                              if(latitude.equals("") || longitude.equals("")) {
+                                                                                  Toast.makeText(getApplicationContext(), "Choose Event Location", Toast.LENGTH_LONG).show();
+                                                                                  return;
+                                                                              } else {
+                                                                                  helper.insertEvent("eventitle", "eventlocation", "eventdate", "eventtime", "eventprice", "eventdescription", latitude, longitude);
+                                                                                  Toast.makeText(getApplicationContext(), "Event Successfully Created", Toast.LENGTH_LONG).show();
+                                                                                  Intent openNextActivityIntent = new Intent(OrganizerSetEventLocation.this, OrganizerHome.class);
+                                                                                  openNextActivityIntent.putExtra(Intent.EXTRA_TEXT, markerPositionLat);
+                                                                                  openNextActivityIntent.putExtra(Intent.EXTRA_TEXT, markerPositionLong);
+                                                                                  startActivity(openNextActivityIntent);
+                                                                              }
+                                                                          }}});}}
 
-                                                                          //TODO: @Carreg Push latlong data to database
-                /*
-                Intent for next Activity  //TODO: This intent section is not done
-                 */
-                                                                          //Create Intent to open example event A event details activity
-                                                                          Intent openNextActivityIntent = new Intent(OrganizerSetEventLocation.this, OrganizerHome.class);
-
-                                                                          //Start the intent activity
-                                                                          startActivity(openNextActivityIntent);
-
-                                                                      }
-                                                                  }
-        );
-
-
-    }
-}

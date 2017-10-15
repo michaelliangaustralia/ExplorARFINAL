@@ -3,6 +3,7 @@ package explorar.explorarv9000;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -14,18 +15,23 @@ public class OrganizerHome extends OrganizationLogin {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.organiser_home);
-        String name = getIntent().getStringExtra("Username");
-        TextView tv = (TextView)findViewById(R.id.organiser_login);
-        tv.setText(name);
+        Button organiserlistevents = (Button)findViewById(R.id.organiser_home_list_event_button);
+        organiserlistevents.setOnClickListener(this);
+        Button organisercreateevent = (Button)findViewById(R.id.organiser_home_create_event_button);
+        organisercreateevent.setOnClickListener(this);
     }
-    public void onButtonClick(View v) {
-        if(v.getId() == (R.id.organiser_home_create_event_button));
-        Intent i = new Intent(OrganizerHome.this, CreateEvent.class);
-        startActivity(i);
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.organiser_home_list_event_button:
+                Intent i = new Intent(OrganizerHome.this, EventsList.class);
+                startActivity(i);
+                break;
+            case R.id.organiser_home_create_event_button:
+                Intent l = new Intent(OrganizerHome.this, CreateEvent.class);
+                startActivity(l);
+                break;
+            default:
+                break;
+        }
     }
-//    public void onButton1Click(View v) {
-//        if(v.getId() == (R.id.organiser_home_list_event_button));
-//        Intent i = new Intent(OrganizerHome.this, CustomList.class);
-//        startActivity(i);
-//    }
 }
