@@ -32,11 +32,19 @@
         android:inputType="date" />
 
     <EditText
-        android:id="@+id/event_time"
+        android:id="@+id/event_start_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/hint_event_time"
+        android:hint="Event Start Time"
+        android:inputType="time" />
+
+    <EditText
+        android:id="@+id/event_end_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Event End Time"
         android:inputType="time" />
 
     <EditText
@@ -67,9 +75,9 @@
         android:id="@+id/create_event_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:background="@color/colorPrimary"
         android:text="Set Event Location"
-        android:layout_marginTop="15dp"
         android:textColor="@color/colorWhite" />
 
 </LinearLayout>
