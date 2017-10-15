@@ -12,10 +12,12 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +44,26 @@ public class EventDetailsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_detail);
+
+        /*
+        Actionbar
+         */
+
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.action_bar);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        View view = getSupportActionBar().getCustomView();
+        TextView textView = (TextView) findViewById(R.id.toolbar_title);
+        textView.setText("");
+
+        ImageButton imageButton = (ImageButton) view.findViewById(R.id.action_bar_back);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         /*
         Intents
@@ -169,8 +191,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         else if (location.contains("Law Building")){
             imageview_event_details_hero.setImageResource(R.drawable.law_building);
         }
-        else if (location.contains("Globe Lawn")){
-            imageview_event_details_hero.setImageResource(R.drawable.globe_lawn);
+        else if (location.contains("Physics Lawn")){
+            imageview_event_details_hero.setImageResource(R.drawable.physics_lawn);
         }
         else if (location.contains("Library Lawn")){
             imageview_event_details_hero.setImageResource(R.drawable.library_lawn);
@@ -181,7 +203,6 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         //IMAGE: Stretch image to fit the imageview
         imageview_event_details_hero.setScaleType(ImageView.ScaleType.FIT_XY);
-
 
         /*
         Create event_detail_button - Maps Directions
@@ -213,67 +234,3 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     }
 }
-
-
-/*
-           IMAGE DB
-
-in main
-//        downloadImage("https://static.pexels.com/photos/7174/summer-grass.jpg");
-
-
-
-// AsynnTask to run download an image in background
-class BackTask extends AsyncTask<String, Void, Bitmap> {
-
-    protected void onPreExecute() {
-        Log.i("Michael","Backtask is executing - woohoo!");
-    }
-
-    protected Bitmap doInBackground(String... params) {
-        Bitmap bitmap = null;
-        try {
-            // Download the image
-            URL url = new URL(params[0]);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream is = connection.getInputStream();
-            // Decode image to get smaller image to save memory
-            final BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = false;
-            options.inSampleSize = 4;
-            bitmap = BitmapFactory.decodeStream(is, null, options);
-            is.close();
-        } catch (IOException e) {
-            return null;
-        }
-        return bitmap;
-    }
-
-    protected void onPostExecute(Bitmap result) {
-        // Insert bitmap to the database
-
-        //DB: Create helper instance
-        DbCreation dbCreation = new DbCreation(getBaseContext());
-
-        //DB: Get readable reference of database and store it in mDb
-        mDb = dbCreation.getWritableDatabase();
-        Log.i("Michael", "IMAGE DB: WritableDatabase has been created");
-
-
-        mDb.insert(DbContracts.imageDBentry.TABLE_NAME,null,result.bitmap);
-        helper.insertBitmap(result);
-        Log.i("Michael", "IMAGE DB: Bitmap is" + result);
-        Log.i("Michael", "IMAGE DB: Bitmap inserted!");
-    }
-}
-
-    public void downloadImage(String url) {
-        BackTask bt = new BackTask();
-        bt.execute(url); //Not sure if this is legit
-        Log.i("Michael", "Image Downloaded!");
-    }
- */
-
-
