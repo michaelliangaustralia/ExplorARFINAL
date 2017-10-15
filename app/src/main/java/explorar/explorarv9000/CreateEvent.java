@@ -23,22 +23,24 @@ public class CreateEvent extends MainActivity implements View.OnClickListener {
     public void onClick(View v) {
         EditText eventitle = (EditText)findViewById(R.id.event_title);
         EditText eventdate = (EditText)findViewById(R.id.event_date);
-        EditText eventtime = (EditText)findViewById(R.id.event_time);
+        EditText eventstarttime = (EditText)findViewById(R.id.event_end_time);
+        EditText eventendtime = (EditText)findViewById(R.id.event_start_time);
         EditText eventlocation = (EditText)findViewById(R.id.event_location);
         EditText eventprice = (EditText)findViewById(R.id.editText);
         EditText eventdesc = (EditText)findViewById(R.id.editText7);
         String eventitlestr = eventitle.getText().toString();
         String eventdatestr = eventitle.getText().toString();
-        String eventtimestr = eventtime.getText().toString();
+        String eventstarttimestr = eventstarttime.getText().toString();
+        String eventendtimestr = eventendtime.getText().toString();
         String eventlocationstr = eventlocation.getText().toString();
         String eventpricestr = eventprice.getText().toString();
         String eventdescstr = eventdesc.getText().toString();
         if(v.getId() == (R.id.create_event_button)) {
-            if(eventitlestr.equals("") || eventdatestr.equals("") || eventtimestr.equals("") || eventlocationstr.equals("") || eventprice.equals("") || eventdescstr.equals(""));
+            if(eventitlestr.equals("") || eventdatestr.equals("") || eventstarttimestr.equals("") || eventendtimestr.equals("") || eventlocationstr.equals("") || eventprice.equals("") || eventdescstr.equals(""));
             Toast.makeText(getApplicationContext(), "Fields Vaccant", Toast.LENGTH_LONG).show();
             return;
         }else {
-            helper.insertEvent(eventitlestr, eventdatestr, eventtimestr, eventlocationstr, eventpricestr, eventdescstr, "latitude", "longitude");
+            helper.insertEvent(eventitlestr, eventdatestr, eventstarttimestr, eventendtimestr, eventlocationstr, eventpricestr, eventdescstr, "latitude", "longitude");
             Toast.makeText(getApplicationContext(), "Choose Event Location", Toast.LENGTH_LONG).show();
             Intent i = new Intent(CreateEvent.this, OrganizerSetEventLocation.class);
             startActivity(i);
