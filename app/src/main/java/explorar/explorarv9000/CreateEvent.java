@@ -29,21 +29,19 @@ public class CreateEvent extends MainActivity implements View.OnClickListener {
         EditText eventprice = (EditText)findViewById(R.id.editText);
         EditText eventdesc = (EditText)findViewById(R.id.editText7);
         String eventitlestr = eventitle.getText().toString();
-        String eventdatestr = eventitle.getText().toString();
+        String eventdatestr = eventdate.getText().toString();
         String eventstarttimestr = eventstarttime.getText().toString();
         String eventendtimestr = eventendtime.getText().toString();
         String eventlocationstr = eventlocation.getText().toString();
         String eventpricestr = eventprice.getText().toString();
         String eventdescstr = eventdesc.getText().toString();
         if(v.getId() == (R.id.create_event_button)) {
-            if(eventitlestr.equals("") || eventdatestr.equals("") || eventstarttimestr.equals("") || eventendtimestr.equals("") || eventlocationstr.equals("") || eventprice.equals("") || eventdescstr.equals(""));
-            Toast.makeText(getApplicationContext(), "Fields Vaccant", Toast.LENGTH_LONG).show();
-            return;
-        }else {
             helper.insertEvent(eventitlestr, eventdatestr, eventstarttimestr, eventendtimestr, eventlocationstr, eventpricestr, eventdescstr, "latitude", "longitude");
             Toast.makeText(getApplicationContext(), "Choose Event Location", Toast.LENGTH_LONG).show();
             Intent i = new Intent(CreateEvent.this, OrganizerSetEventLocation.class);
             startActivity(i);
+        }else {
+            Toast.makeText(getApplicationContext(), "Fields Vacant", Toast.LENGTH_LONG).show();
         }
     }
 }
