@@ -170,6 +170,7 @@ public class DbCreation extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  + " + DbContracts.studentDBentry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
+
 }
 
     /*

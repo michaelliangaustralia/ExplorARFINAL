@@ -4,21 +4,21 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.Event;
-import static explorar.explorarv9000.OrganizationLogin.loggedUser;
 
 /**
- * Created by carregliu on 15/10/2017.
+ * Created by kevin on 14/10/2017.
  */
 
 public class EventRepo {
     private DbCreation dbHelper;
 
-    public EventRepo(Context context) { dbHelper = new DbCreation(context);}
+    public EventRepo(Context context) {
+        dbHelper = new DbCreation(context);
+    }
 
     public int insert(Event event) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
@@ -30,12 +30,11 @@ public class EventRepo {
         values.put(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION, event.eDesc);
         values.put(DbContracts.eventsDBentry.COLUMN_PRICE_EVENT, event.ePrice);
 
-        //Inserting Row
+//Inserting Row
         long eID = sqLiteDatabase.insert(DbContracts.eventsDBentry.TABLE_NAME, null, values);
         sqLiteDatabase.close();
         return (int) eID;
     }
-
     public void delete(int eID) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         sqLiteDatabase.delete(DbContracts.eventsDBentry.TABLE_NAME, DbContracts.eventsDBentry._ID + "= ?", new String[] { String.valueOf(eID) });
@@ -58,7 +57,18 @@ public class EventRepo {
     }
 
     public ArrayList<HashMap<String, String>> getEventList() {
+//instantiate db
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+
+//images
+        int [] images = new int[] {
+                R.drawable.library_lawn,
+                R.drawable.physics_lawn,
+                R.drawable.law_building
+        };
+
+
+//create query
         String selectQuery = "SELECT " +
                 DbContracts.eventsDBentry._ID + " , " +
                 DbContracts.eventsDBentry .COLUMN_NAME_EVENT + " , " +
@@ -68,11 +78,19 @@ public class EventRepo {
                 DbContracts.eventsDBentry .COLUMN_ENDTIME_EVENT + " ," +
                 DbContracts.eventsDBentry .COLUMN_PRICE_EVENT + " ," +
                 DbContracts.eventsDBentry .COLUMN_NAME_DESCRIPTION +
-                " FROM " + DbContracts.eventsDBentry.TABLE_NAME + "WHERE " +DbContracts.eventsDBentry.COLUMN_NAME_HOSTORG + "=" +loggedUser;
+                " FROM " + DbContracts.eventsDBentry.TABLE_NAME;
 
+//arraylist hashmap instantiate
         ArrayList<HashMap<String, String>> eventList = new ArrayList<HashMap<String, String>>();
+
+//Create cursor
         Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
 
+//initialise count
+        int count = 0;
+
+//put stuff in hashmap
+        cursor.moveToFirst();
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> event = new HashMap<String, String>();
@@ -84,6 +102,13 @@ public class EventRepo {
                 event.put("eEndTime", cursor.getString(cursor.getColumnIndex(DbContracts.eventsDBentry.COLUMN_ENDTIME_EVENT)));
                 event.put("ePrice", cursor.getString(cursor.getColumnIndex(DbContracts.eventsDBentry.COLUMN_PRICE_EVENT)));
                 event.put("eDesc", cursor.getString(cursor.getColumnIndex(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION)));
+
+                //image
+                event.put("eImage", Integer.toString(images[count]));
+
+                //increment count
+                count++;
+
                 eventList.add(event);
             } while (cursor.moveToNext());
         }
@@ -105,7 +130,7 @@ public class EventRepo {
                 DbContracts.eventsDBentry .COLUMN_NAME_DESCRIPTION +
                 " FROM " + DbContracts.eventsDBentry.TABLE_NAME
                 + " WHERE " +
-                DbContracts.eventsDBentry.COLUMN_EVENT_ID + "=?";
+                DbContracts.eventsDBentry._ID + "=?";
 
         int iCount =0;
         Event event = new Event();
