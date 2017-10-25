@@ -91,7 +91,7 @@ public class EventsList extends ListActivity implements android.view.View.OnClic
         ArrayList<HashMap<String, String>> eventList = repo.getEventList();
         if (view == findViewById(R.id.btnAdd)) {
 
-            Intent intent = new Intent(this, crudEvent.class);
+            Intent intent = new Intent(this, CreateEvent.class);
             intent.putExtra("eID", 0);
             startActivity(intent);
 

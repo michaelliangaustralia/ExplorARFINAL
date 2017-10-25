@@ -103,11 +103,14 @@ public class EventRepo {
                 event.put("ePrice", cursor.getString(cursor.getColumnIndex(DbContracts.eventsDBentry.COLUMN_PRICE_EVENT)));
                 event.put("eDesc", cursor.getString(cursor.getColumnIndex(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION)));
 
-                //image
-                event.put("eImage", Integer.toString(images[count]));
 
-                //increment count
-                count++;
+                if (count < images.length) {//this wont try to get images when none exist
+                    //image
+                    event.put("eImage", Integer.toString(images[count]));
+
+                    //increment count
+                    count++;
+                }
 
                 eventList.add(event);
             } while (cursor.moveToNext());
