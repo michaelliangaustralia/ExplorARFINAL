@@ -119,10 +119,6 @@ public class crudEvent extends AppCompatActivity implements android.view.View.On
             //Start intent
             startActivity(intent);
 
-
-
-
-
 //
 //
 //        if (view == findViewById(R.id.btnSave)) {

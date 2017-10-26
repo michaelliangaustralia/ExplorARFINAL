@@ -16,11 +16,11 @@ import java.util.List;
 public class DBInsertFakeData {
 
     public static void insertFakeData(SQLiteDatabase db){
-        if(db != null){
+        if(db == null){
             Log.i("Michael", "insertFakeData called but No fake data is being added");
             return;
         }
-        Log.i("Michael", "InserFakeData is called and fake data is being added");
+        Log.i("Michael", "InsertFakeData is called and fake data is being added");
 
 
         //create a list of fake events
