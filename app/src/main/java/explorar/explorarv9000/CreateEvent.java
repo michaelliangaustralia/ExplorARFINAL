@@ -17,7 +17,8 @@ import static explorar.explorarv9000.OrganizationLogin.loggedUser;
  */
 
 public class CreateEvent extends MainActivity implements View.OnClickListener {
-    DbCreation helper = new DbCreation(this);
+
+    DbCreation dbCreation = new DbCreation(this);
 
     EditText eventtitle;
     EditText eventdate;
@@ -42,8 +43,6 @@ public class CreateEvent extends MainActivity implements View.OnClickListener {
         eventlocation = (EditText)findViewById(R.id.event_location);
         eventprice = (EditText)findViewById(R.id.editText);
         eventdesc = (EditText)findViewById(R.id.editText7);
-        
-        
     }
 
     public void onClick(View v) {
@@ -61,8 +60,7 @@ public class CreateEvent extends MainActivity implements View.OnClickListener {
         if(v.getId() == (R.id.create_event_button)) {
 
             String[] eventDataArray = new String[] {loggedUser, eventitlestr, eventdatestr, eventstarttimestr, eventendtimestr, eventlocationstr, eventpricestr, eventdescstr};
-
-            Log.i("Michael", Arrays.toString(eventDataArray));
+            Log.i("Michael - CreateEvent", "eventDataArray is " + Arrays.toString(eventDataArray));
 
             /*
             intent
@@ -72,7 +70,7 @@ public class CreateEvent extends MainActivity implements View.OnClickListener {
             Intent intent = new Intent(CreateEvent.this, OrganizerSetEventLocation.class);
 
             //putextra
-//            intent.putExtra(Intent.EXTRA_TEXT,)
+            intent.putExtra(Intent.EXTRA_TEXT,eventDataArray);
 
             //Start intent
             startActivity(intent);

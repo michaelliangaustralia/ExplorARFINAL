@@ -7,6 +7,8 @@ package explorar.explorarv9000;
 import android.content.ContentValues;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +16,12 @@ import java.util.List;
 public class DBInsertFakeData {
 
     public static void insertFakeData(SQLiteDatabase db){
-        if(db == null){
+        if(db != null){
+            Log.i("Michael", "insertFakeData called but No fake data is being added");
             return;
         }
+        Log.i("Michael", "InserFakeData is called and fake data is being added");
+
 
         //create a list of fake events
         List<ContentValues> list = new ArrayList<ContentValues>();
@@ -101,7 +106,8 @@ public class DBInsertFakeData {
         //db: endTransaction();
         db.endTransaction();
 
-
+        //Success
+        Log.i("Michael", "Fake Data has been inserted");
 
 
 //            final String INSERT_TEST_DATA_ONE = "INSERT INTO " +

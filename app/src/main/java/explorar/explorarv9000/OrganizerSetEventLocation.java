@@ -15,16 +15,32 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.Arrays;
+
 import static explorar.explorarv9000.OrganizationLogin.loggedUser;
 
 public class OrganizerSetEventLocation extends FragmentActivity implements OnMapReadyCallback {
 
+    private String[] eventDataArray;
     private GoogleMap mMap;
     private Marker marker;
     private LatLng markerPosition;
     private double markerPositionLat;
     private double markerPositionLong;
 
+    private String hostOrg;
+    private String eventTitle;
+    private String eventDate;
+    private String eventStartTime;
+    private String eventEndTime;
+    private String eventLocation;
+    private String eventPrice;
+    private String eventDescription;
+
+    private Double latitude;
+    private Double longitude;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +49,41 @@ public class OrganizerSetEventLocation extends FragmentActivity implements OnMap
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        /*
+        Intents
+         */
+
+        //Intent: Get Intent
+        Intent intentThatStartedActivity = getIntent();
+
+        //Intent: Get Information that was packaged in it
+        if (intentThatStartedActivity.hasExtra(Intent.EXTRA_TEXT)) {
+            eventDataArray = intentThatStartedActivity.getStringArrayExtra(Intent.EXTRA_TEXT);
+            Log.i("Michael", "eventDataArray is " + Arrays.toString(eventDataArray));
+        }
+
+        /*
+        Assign intent data to variables
+         */
+
+        hostOrg = eventDataArray[0];
+        eventTitle = eventDataArray[1];
+        eventDate = eventDataArray[2];
+        eventStartTime = eventDataArray[3];
+        eventEndTime = eventDataArray[4];
+        eventLocation = eventDataArray[5];
+        eventPrice = eventDataArray[6];
+        eventDescription = eventDataArray[7];
+
+        Log.i("Michael", "hostOrg is " + hostOrg);
+        Log.i("Michael", "eventTitle is " + eventTitle);
+        Log.i("Michael", "eventDate is " + eventDate);
+        Log.i("Michael", "eventStartTime is " + eventStartTime);
+        Log.i("Michael", "eventEndTime is " + eventEndTime);
+        Log.i("Michael", "eventPrice is " + eventPrice);
+        Log.i("Michael", "eventDescription is " + eventDescription);
+
     }
 
 
@@ -46,7 +97,7 @@ public class OrganizerSetEventLocation extends FragmentActivity implements OnMap
      * installed Google Play services and returned to the app.
      */
 
-    //TODO: Make the marker center itself on the screen and have the user drag the screen and not the marker!
+    //TODO: Make the marker center itself on the screen and have the user drag the screen and not the marker
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -72,22 +123,30 @@ public class OrganizerSetEventLocation extends FragmentActivity implements OnMap
                                                                       @Override
                                                                       public void onClick(View view) {
                                                                           //set markerPosition to current position of marker
+
                                                                           markerPosition = marker.getPosition();
                                                                           markerPositionLat = markerPosition.latitude;
                                                                           markerPositionLong = markerPosition.longitude;
-                                                                          Log.i("Michael", "markerPosition is " + markerPosition);
-                                                                          String latitude = Double.toString(markerPositionLat);
-                                                                          String longitude = Double.toString(markerPositionLong);
+
+                                                                          latitude = markerPositionLat;
+                                                                          longitude = markerPositionLong;
+
+                                                                          Log.i("Michael", "latitude is " + latitude);
+                                                                          Log.i("Michael", "longitude is " + longitude);
+
                                                                           if(view.getId() == (R.id.organiser_set_event_location_set_location_button)) {
                                                                               if(latitude.equals("") || longitude.equals("")) {
                                                                                   Toast.makeText(getApplicationContext(), "Choose Event Location", Toast.LENGTH_LONG).show();
                                                                                   return;
-                                                                              } else {
-                                                                                  helper.insertEvent(loggedUser, "eventitle", "eventlocation", "eventdate", "eventstarttime", "endendtime", "eventprice", "eventdescription", latitude, longitude);
+                                                                              }
+
+                                                                              else {
+                                                                                  //Add data into database
+                                                                                  helper.insertEvent(loggedUser, eventTitle, eventLocation, eventDate, eventStartTime, eventEndTime, eventPrice, eventDescription, latitude, longitude);
                                                                                   Toast.makeText(getApplicationContext(), "Event Successfully Created", Toast.LENGTH_LONG).show();
-                                                                                  Intent openNextActivityIntent = new Intent(OrganizerSetEventLocation.this, OrganizerHome.class);
-                                                                                  openNextActivityIntent.putExtra(Intent.EXTRA_TEXT, markerPositionLat);
-                                                                                  openNextActivityIntent.putExtra(Intent.EXTRA_TEXT, markerPositionLong);
+
+                                                                                  //Start Intent
+                                                                                  Intent openNextActivityIntent = new Intent(OrganizerSetEventLocation.this, EventsList.class);
                                                                                   startActivity(openNextActivityIntent);
                                                                               }
                                                                           }}});}}

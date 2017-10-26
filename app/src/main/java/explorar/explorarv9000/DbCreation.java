@@ -12,6 +12,9 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import model.Organization;
 import model.Student;
@@ -23,6 +26,10 @@ import model.Student;
 // this class is responsible for doing anything with the database
 
 public class DbCreation extends SQLiteOpenHelper {
+    private Cursor cursor;
+    private String[] data = new String [100];
+
+
     private static final int DATABASE_VERSION = 1; //remember to update the version number when any database changes are made
     private static final String DATABASE_NAME = "app.db";
 
@@ -85,35 +92,42 @@ public class DbCreation extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_ORGANISATIONS_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_EVENTS_TABLE);
 //        sqLiteDatabase.execSQL(SQL_CREATE_IMAGES_TABLE);
+
     }
 
     //Get organisation name based off input email
     public String getOrganisationNameFromEmail(String email){
         //Create and initialise DB + cursor
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " +
+        SQLiteDatabase db = getWritableDatabase();
+
+        cursor = db.rawQuery("SELECT " +
+                DbContracts.organisationsDBentry.COLUMN_NAME_ORG +
+                                    " FROM " +
             DbContracts.organisationsDBentry.TABLE_NAME + " WHERE " +
                 DbContracts.organisationsDBentry.COLUMN_EMAIL_ORG + " = \"" +
                 email +
                 "\";"
                 ,null);
 
+//
+//        for (int i = 0 ; i < 12; i++){
+//            cursor.moveToPosition(i);
+//
+//            data[i] = cursor.getString(0);
+//            Log.i("Michael", Arrays.toString(data));
+//        }
+
+        Log.i("Michael - dbc", String.valueOf("cursor number of rows is " + cursor.getCount()));
+        Log.i("Michael - dbc", String.valueOf("cursor number of columns is"  + cursor.getColumnCount()));
+        Log.i("Michael - dbc", String.valueOf("cursor position is " + cursor.getPosition()));
+
         //Retrieve result from cursor
         String result;
 
-        if (cursor.getCount() == 1){
-            //return email
-            cursor.moveToFirst();
-            result = cursor.getString(cursor.getColumnIndex(DbContracts.organisationsDBentry.COLUMN_EMAIL_ORG));
-        }
-        else if (cursor.getCount() > 1){
-            //duplicates exist
-            result = "Duplicate organisation entries exist for this email";
-        }
-        else {
-            //none exist
-            result = "No organisations exist for this email";
-        }
+        //retrieve email from cursor
+        cursor.moveToFirst();
+        result = cursor.getString(0);
+        Log.i("Michael", String.valueOf("what is the result? " + result));
 
         return result;
     }
@@ -131,11 +145,17 @@ public class DbCreation extends SQLiteOpenHelper {
     }
 
     //insert a new event row
-    public void insertEvent(String orgName, String eventName, String eventLocation, String eventDate, String eventStartTime, String eventEndTime, String eventPrice, String eventDescription, String eventLatitude, String eventLongitude) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void insertEvent(String orgName, String eventName, String eventLocation, String eventDate, String eventStartTime, String eventEndTime, String eventPrice, String eventDescription, Double eventLatitude, Double eventLongitude) { //I changed the last two from string to double
+        SQLiteDatabase db = getWritableDatabase();
+
         ContentValues values = new ContentValues();
-        values.put(DbContracts.eventsDBentry.COLUMN_NAME_HOSTORG, orgName);
+
+        List<ContentValues> list = new ArrayList<ContentValues>();
+
+        db.beginTransaction();
+
         values.put(DbContracts.eventsDBentry.COLUMN_NAME_EVENT, eventName);
+        values.put(DbContracts.eventsDBentry.COLUMN_NAME_HOSTORG, orgName);
         values.put(DbContracts.eventsDBentry.COLUMN_LOCATION_EVENT, eventLocation);
         values.put(DbContracts.eventsDBentry.COLUMN_DATE_EVENT, eventDate);
         values.put(DbContracts.eventsDBentry.COLUMN_STARTTIME_EVENT, eventStartTime);
@@ -144,7 +164,18 @@ public class DbCreation extends SQLiteOpenHelper {
         values.put(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION, eventDescription);
         values.put(DbContracts.eventsDBentry.COLUMN_LATITUDE_EVENT, eventLatitude);
         values.put(DbContracts.eventsDBentry.COLUMN_LONGITUDE_EVENT, eventLongitude);
-        db.close();
+        values.put(DbContracts.eventsDBentry.COLUMN_EVENT_TYPE , "WORKSHOP");
+
+        list.add(values);
+        db.insert(DbContracts.eventsDBentry.TABLE_NAME, null, values);
+
+        //db: setTransactionSuccessful();
+        db.setTransactionSuccessful();
+
+        //db: endTransaction();
+        db.endTransaction();
+
+
     }
 
     //search username and password

@@ -2,6 +2,7 @@ package explorar.explorarv9000;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,12 +42,15 @@ public class OrganizationLogin extends MainActivity implements View.OnClickListe
 
         if (v.getId() == (R.id.organiser_login_button)) {
             if (helper.searchoPassword(email, pass)) {
-                Toast.makeText(OrganizationLogin.this,
-                        "Successfully Logged In", Toast.LENGTH_LONG)
-                        .show();
+                Toast.makeText(OrganizationLogin.this, "Successfully Logged In", Toast.LENGTH_LONG).show();
+
                 Intent i = new Intent(OrganizationLogin.this, OrganizerHome.class);
                 startActivity(i);
+
+                //attach email to loggeduser
                 loggedUser = helper.getOrganisationNameFromEmail(email);
+                Log.i("Michael","loggedUser is " + loggedUser);
+
             } else {
                 Toast.makeText(OrganizationLogin.this,
                         "Invalid username or password",

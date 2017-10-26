@@ -114,8 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void insertFakeData(){
         //DB: Insert Fake Data
         DBInsertFakeData.insertFakeData(mDb);
-        Log.i("Michael", "Fake Data has been inserted");
-    } //TODO: Remove this when we connect database from organisation side
+    }
 
     private void initialiseCursor(){
         //DB: call getEventName() and put it in a cursor variable
@@ -125,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 }
 
 
-//TODO: For Jenny's ListView Below - Ignore For Now
 
 //    ListView list;
 //    String[] web = {
