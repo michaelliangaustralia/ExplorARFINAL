@@ -46,6 +46,10 @@
         <activity android:name=".CreateEvent"></activity>
 
         <activity android:name=".TestDatabase"></activity>
+        <!--TODO DELETE TESTDATABASE-->
+
+        <activity android:name=".OrganizerCRUDSetEventLocation"></activity>
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

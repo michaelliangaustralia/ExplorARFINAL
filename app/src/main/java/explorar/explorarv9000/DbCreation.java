@@ -195,6 +195,15 @@ public class DbCreation extends SQLiteOpenHelper {
         return false;
     }
 
+    //delete row
+    public void deleteRow(int eventID){
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.delete(DbContracts.eventsDBentry.TABLE_NAME, DbContracts.eventsDBentry._ID + "=" + eventID, null);
+
+        Log.i("Michael - deleteRow", "Row has been deleted");
+    }
+
     // drops the current table and creates a new one when a new version is updated
     @Override
     public void onUpgrade (SQLiteDatabase sqLiteDatabase, int i, int i1) {

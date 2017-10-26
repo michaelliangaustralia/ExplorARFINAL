@@ -3,6 +3,7 @@ package explorar.explorarv9000;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -52,17 +53,19 @@ public class EventsList extends ListActivity implements android.view.View.OnClic
             //get list view
             ListView lv = getListView();
 
-            //onItemClick
+            //onItemClick - of an event
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 //
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long eID) {
                     eId = (TextView) view.findViewById(R.id.eID);
-                    String eId1 = eId.getText().toString();
+                    String eventID = eId.getText().toString();
+                    Log.i("Michael EventsList", "eventID is " + eventID);
 
+                    //start intent
                     Intent objIndent = new Intent(getApplicationContext(), crudEvent.class);
-                    objIndent.putExtra("eID", Integer.parseInt(eId1));
+                    objIndent.putExtra(Intent.EXTRA_TEXT, eventID);
                     startActivity(objIndent);
                 }
             });
@@ -89,6 +92,8 @@ public class EventsList extends ListActivity implements android.view.View.OnClic
 
         EventRepo repo = new EventRepo(this);
         ArrayList<HashMap<String, String>> eventList = repo.getEventList();
+
+        //Add button
         if (view == findViewById(R.id.btnAdd)) {
 
             Intent intent = new Intent(this, CreateEvent.class);

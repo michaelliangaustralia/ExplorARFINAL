@@ -72,11 +72,11 @@
         android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnSetLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:text="Confirm Changes"
+        android:text="Set Event Location"
         android:layout_marginTop="15dp"
         android:textColor="@color/colorWhite" />
 
