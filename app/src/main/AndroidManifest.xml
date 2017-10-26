@@ -45,9 +45,6 @@
 
         <activity android:name=".CreateEvent"></activity>
 
-        <activity android:name=".TestDatabase"></activity>
-        <!--TODO DELETE TESTDATABASE-->
-
         <activity android:name=".OrganizerCRUDSetEventLocation"></activity>
 
 
