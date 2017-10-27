@@ -64,7 +64,9 @@ public class EventRepo {
         int [] images = new int[] {
                 R.drawable.library_lawn,
                 R.drawable.physics_lawn,
-                R.drawable.law_building
+                R.drawable.law_building,
+                R.drawable.unsw,
+                R.drawable.unsw_business_school
         };
 
 
@@ -87,7 +89,7 @@ public class EventRepo {
         Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
 
 //initialise count
-        int count = 0;
+//        int count = 0;
 
 //put stuff in hashmap
         cursor.moveToFirst();
@@ -104,13 +106,28 @@ public class EventRepo {
                 event.put("eDesc", cursor.getString(cursor.getColumnIndex(DbContracts.eventsDBentry.COLUMN_NAME_DESCRIPTION)));
 
 
-                if (count < images.length) {//this wont try to get images when none exist
-                    //image
-                    event.put("eImage", Integer.toString(images[count]));
+//                if (count < images.length) {//this wont try to get images when none exist
+                    String location = cursor.getString(cursor.getColumnIndex(DbContracts.eventsDBentry.COLUMN_LOCATION_EVENT));
+
+                    if (location.contains("Business School")){
+                        event.put("eImage", Integer.toString(images[4]));
+                    }
+                    else if (location.contains("Law Building")){
+                        event.put("eImage", Integer.toString(images[2]));
+                    }
+                    else if (location.contains("Physics Lawn")){
+                        event.put("eImage", Integer.toString(images[1]));
+                    }
+                    else if (location.contains("Library Lawn")){
+                        event.put("eImage", Integer.toString(images[0]));
+                    }
+                    else {
+                        event.put("eImage", Integer.toString(images[3]));
+                    }
 
                     //increment count
-                    count++;
-                }
+//                    count++;
+//                }
 
                 eventList.add(event);
             } while (cursor.moveToNext());
